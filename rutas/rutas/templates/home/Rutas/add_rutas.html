@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Agregar una ruta
+{% endblock %}
+
+{% block content %}
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<h4 id="cn">Agregar Ruta</h4>
+				<form action="." method="POST" enctype = "multipart/form-data">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<button type="submit"><a class="waves-effect waves-light btn"><b>Guardar</b></a></button>
+					<b><input class="waves-effect waves-light btn" type="reset" value="Limpiar"></b>
+					<a class="waves-effect waves-light btn" href="/" type="submit"><b>Volver</b></a>
+				</form>
+				<br>
+				{{ info }}	
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}	

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+			Contacto
+{% endblock %}
+
+{% block content %}
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			{% if info_enviado %}
+				<h4>Gracias por enviar un comentario, nos pondremos en contacto</h4>
+				
+			{% else %}
+			<h4>Ingrese su correo, de un titulo y escriba su comentario</h4>
+			<form action="." method = "POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<b><input class="waves-effect waves-light btn"  type = "submit" value = "enviar"/></b>
+			</form>
+			{% endif %}
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

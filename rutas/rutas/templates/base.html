@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} Bienvenidos{% endblock %}</title>
+	<!--materialize-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/media/css/materialize.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/media/css/styles.css">
+	{% block head %}
+		
+	{% endblock %}
+	
+</head>
+<body>
+	<!-- Navegador-->
+	<nav class="menu-header black lighten-1">
+		<div id="colnav" class="nav-wrapper z-depth-2">
+			<a href="{% url 'vista_principal' %}" class="brand-logo right"><img src="/media/imagen/bu.jpg" width="60px" height="60px"></a> 
+			<a href="#" data-activates="mobile-demo" class="button-collapse">
+			<i class="material-icons">menu</i></a>
+			
+		<!-- menú para la web -->	     
+		<!--LUGARES-->
+			<ul id="dropdown1" class="dropdown-content">
+				<li><a id="ty" href="{% url 'vista_agregar_tipo_lugar' %}">Agregar tipo de Lugar</a></li>
+				<li><a id="ty" href="{% url 'vista_agregar_lugar' %}">Agregar Lugar</a></li>				
+				<li><a id="ty" href="/lugares/page/1">Listado de lugares</a></li>			
+			</ul>
+		<!--EMPRESAS-->
+			<ul id="dropdown3" class="dropdown-content">
+				<li><a id="ty" href="{% url 'vista_add_empresa' %}">Agregar Empresa</a></li>
+				<li><a id="ty" href="{% url 'vista_empresa' %}">Listado de Empresas</a></li>	
+			</ul>
+		<!--RUTAS-->
+			<ul id="dropdown2" class="dropdown-content">
+				<!--<li><a href="">Agregar Recorrido</a></li>-->
+				<li><a id="ty" href="{% url 'vista_agregar_rutas' %}">Agregar Ruta</a></li>
+				<li><a id="ty" href="/ruta/page/1">Listado de Rutas</a></li>						
+			</ul>
+			
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li><a id="ty" href="{% url 'vista_principal' %}"><b>Buscador</b></a></li>    
+				<li><a id="ty"href="{% url 'vista_contacto' %}"><b>Comentar</b></a></li>  
+			{% if user.is_authenticated %}     
+			<!--LUGARES-->
+				<li><a id="ty" href="#" class="dropdown-button" data-activates="dropdown1">Lugares<i class="material-icons right">arrow_drop_down</i></a></li>
+						
+			<!--EMPRESAS-->
+				<li><a id="ty"class="dropdown-button" data-activates="dropdown3">Empresas<i class="material-icons right">arrow_drop_down</i></a></li>
+									
+			<!--RUTAS-->
+				<li><a id="ty" class="dropdown-button" data-activates="dropdown2">Rutas<i class="material-icons right">arrow_drop_down</i></a></li>
+			{% endif %}					
+			</ul>
+			<!--menu para la mobile -Responsive-->
+
+			<ul class="side-nav" id="mobile-demo">      
+				<li><a id="ty" href="{% url 'vista_buscar' %}">Buscador</a></li>    
+				<li><a id="ty"href="{% url 'vista_contacto' %}">Comentar</a></li>  
+			{% if user.is_authenticated %}
+			<!--LUGARES-->
+				<li><a id="ty" class="dropdown-button" data-activates="dropdown4">Lugares<i class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="dropdown4" class="dropdown-content">
+						<li><a id="ty" href="{% url 'vista_agregar_tipo_lugar' %}">Agregar tipo de Lugar</a></li>
+						<li><a id="ty" href="{% url 'vista_agregar_lugar' %}">Agregar Lugar</a></li>					
+						<li><a id="ty" href="/lugares/page/1">Listado de lugares</a></li>			
+					</ul>	
+			<!--EMPRESAS-->
+				<li><a  id="ty"class="dropdown-button" data-activates="dropdown5">Empresas<i class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="dropdown5" class="dropdown-content">
+						<li><a id="ty" href="{% url 'vista_add_empresa' %}">Agregar Empresa</a></li>
+						<li><a id="ty" href="{% url 'vista_empresa' %}">Listado de Empresas</a></li>	
+					</ul>				
+			<!--RUTAS-->
+				<li><a id="ty" class="dropdown-button" data-activates="dropdown6">Rutas<i class="material-icons right">arrow_drop_down</i></a></li>
+					<ul id="dropdown6" class="dropdown-content">
+					<!--<li><a href="">Agregar Recorrido</a></li>-->
+						<li><a id="ty" href="{% url 'vista_agregar_rutas' %}">Agregar Ruta</a></li>
+						<li><a id="ty" href="/ruta/page/1">Listado de Rutas</a></li>							
+					</ul>
+			{% endif %}		
+			</ul>	    	      
+		</div>
+	</nav>
+		
+
+	<!--contenedor(0)-->
+	<div class="row">
+		<div id="contenedor" class=" col s12 m6 l3">
+		<!--Contenedor(1) Buscador
+					<div  class=" col s12">
+							<div id="estbusc" class="card orange lighten-1 card-panel hoverable">
+								<div id="buscador" class=" card-content white-text">
+									<span class="card-title"><h5 class="center-align"><b>BUSCADOR</b></h5></span>
+									<div class="divider"></div>
+									<div class="row">
+										<div class="input-field col s12">          
+											<input id="icon_prefix" type="text" class="validate" value="{{ query|escape }}" title="lugares">
+											<label id="qw" for="icon_prefix">ORIGEN</label>
+										</div>
+										<div class="input-field col s12">          
+											<input id="icon_prefix" type="text" class="validate" value="{{ query2|escape }}" title="lugares2">
+											<label id="qw" for="icon_prefix">DESTINO</label>
+										</div>	
+										<a class="waves-effect waves-light btn"><i class="material-icons left">pageview</i><b>Buscar</b></a>					            
+									</div>
+								</div>      	
+							</div>
+					</div>-->
+		<!--Contenedor(2) Menú -->
+				<div class=" col s12">		      		
+					<div  id="estbusc1" class="card  card-panel hoverable">
+						<div class="card-content white-text responsive">
+							<span class="card-title"><h5 class="center-align"><b>MENÚ</b></h5></span>
+							<div class="divider"></div>	<br>							
+						<!--COMENTARIO-->
+							<a id="m" href="{% url 'vista_contacto' %}">Comentario</a><br>		
+								
+						</div>
+					</div>
+				
+			  </div>
+		</div>
+	<!--Contenedor principal-->
+		<div  id="contenedor" class="col s12 m6 l9 responsive grey lighten-2">
+	
+			{% block content %}
+
+			{% endblock %} 
+			<head>
+	
+		</div>
+	</div>
+
+	<!-- Pie de Página-->
+	<footer id="footer" class="black lighten-3 page-footer responsive">
+		  <div class="footer-copyright">
+			<div class="container">            	
+		   Derechos reservados © 2016 ADSI 901368
+			<!--Iniciar Sesión-->
+							{% if user.is_authenticated and user.is_staff %}								
+								<a id="m" href= "{% url 'vista_user' %}">Ver Perfil</a><br>
+								<a id="m" href= "{% url 'vista_logout' %}">Cerrar Sesion</a>
+							{% else %}				
+								<a class="grey-text text-lighten-4 right" href= "{% url 'vista_login' %}">Iniciar Sesión</a>				
+							{% endif %}	
+			</div>
+		  </div>
+	</footer>
+	{% block script %}
+		
+	{% endblock %}
+	<script type="text/javascript" src="/media/js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="/media/js/myscript.js"></script>
+	<script type="text/javascript" src="/media/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+	  $('.slider').slider({full_width: true});
+	});
+	</script>
+
+	
+</body>
+</html>

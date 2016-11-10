@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+	Menú
+	
+{% endblock %}
+
+{% block menu %}
+
+	<nav>
+		<ul>
+			<li><a href="{% url'vista_principal' %}" class="breadcrumb">Logo</a></li>
+			<li><a href="#!" class="breadcrumb">Buscador</a></li>
+			<li><a href="{% url 'vista_agregar_lugar' %}" class="breadcrumb">Comentar</a></li>
+		</ul>
+	</nav>
+
+	{{ info }}	
+
+{% endblock %}	

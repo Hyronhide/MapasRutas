@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	User
+{% endblock %}
+
+{% block content %}	
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<br>
+			<p><b>Nombre de ususario: </b>{{ user.username }}</p>
+			<p><b>Correo: </b>{{ user.email }}</p>
+			<br>
+			<a class="waves-effect waves-light btn" href="{% url 'vista_edit_user' %}">Editar</a>
+		</div>
+	</div>
+</div>
+</div>
+	
+{% endblock  %}	

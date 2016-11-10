@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Login
+{% endblock  %}
+
+{% block content %}
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+        	<h4 class="align center">Iniciar Sesión</h4>
+			<div align="center">
+				<form action="." method = "POST" align="center">
+					{% csrf_token %}
+					{{mensaje}}
+					{{ form.as_p }}		
+					<b><input class="waves-effect waves-light btn" type="submit" value="Login"></b>
+				</form>
+				<br>
+				<a href="{% url 'password_reset' %}">olvide mi contraseña</a>	
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+	
+{% endblock  %}

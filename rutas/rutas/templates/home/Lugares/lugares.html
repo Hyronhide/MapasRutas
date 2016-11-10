@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+			Lista de Lugares
+{% endblock %}
+{% block content %}
+<div class="row content-header">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<h4 id="cn" class= "col s12">Lista de Lugares</h4>	
+				<div class="divider"></div><br>
+				{% if lugares %}
+				<table  class="bordered resposive-table">
+					<thead>
+						<tr>		
+							<th data-field="id">Nombre</th>
+							<th data-field="lat">Latitud</th>
+							<th data-field="long">Longitud</th>
+							<th data-field="tlg">Tipo de Lugar</th>
+						</tr>
+					</thead>	
+					{% for p in lugares %}
+						<tbody>
+							<tr>
+								<td>{{ p.nombre }}</td>
+								<td>{{ p.latitud }}</td>
+								<td>{{ p.longitud }}</td>
+								<td>{{ p.tipo }}</td>
+								<td align = "center">
+									<a class="waves-effect waves-light btn" href="{% url 'vista_ver' id_lug=p.id %}" ><i class="material-icons left">pageview</i>Ver </a>				
+									<a class ="waves-effect waves-light btn" href="{% url 'vista_editar_lugar' id_lug=p.id %}"><i class="material-icons left">mode_edit</i>Editar</a>	
+									<!-- Modal Trigger -->
+									<a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons left">delete</i>Eliminar</a>
+									<!-- Modal Structure -->
+									<div id="modal1" class="modal">
+										<div class="modal-content">
+									    	<h4>Eliminar lugar</h4>
+									    	<p>¿Está seguro de eliminar el lugar?</p>
+										</div>
+										<div class="modal-footer">
+									    	<a id="simodal" href="{% url 'vista_eliminar_lugar' id_lug=p.id %}" class=" modal-action modal-close waves-effect waves-green btn-flat">SI</a>
+									    	<a id="nomodal" href="/lugares/page/1" class="modal-action modal-close waves-effect waves-red btn-flat ">NO</a>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>	
+					{% endfor %}
+				</table>
+
+				{% else %}
+					<h2>No existen productos activos a la venta :( </h2>
+				{% endif %}	
+
+				{% if lugares %}
+				<div class="pagination">
+
+					<div  class="pagination pagination-centered">
+						<ul>
+							<li><a id="pag" href="/lugares/page/1"> << </a></li>
+							{% if lugares.has_previus %}
+							<li><a id="pag" href="/lugares/page/{{ lugares.previus_page_number }}"> Anterior </a></li>
+							{% else %}
+								<li><a id="pag"id="pag"id="pag" href="#"> Anterior  </a></li>
+							{% endif %}	
+
+							{% if lugares.has_next %}
+								<li><a id="pag"id="pag" href="/lugares/page/{{ lugares.next_page_number }}">  Siguiente </a></li>
+							{% else %}	
+								<li><a id="pag" href="#"> Siguiente </a></li>
+							{% endif %}	
+							<li><a id="pag"href="/lugares/page/{{ lugares.paginator.num_pages"> >> </a></li>
+
+						</ul>
+					</div>
+				</div><br>
+						
+						<h5 id="paginador">Pagina {{ lugares.number }} de {{ lugares.paginator.num_pages }}</h5>
+				{% endif %}	
+		</div>
+	</div>
+</div>	
+{% endblock %}
+

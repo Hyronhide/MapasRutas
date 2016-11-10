@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+	Agregar una Empresa
+{% endblock %}
+
+{% block content %}
+<div class="row content-header">
+	<div class="container"
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<section >
+			<article >
+				<h4 id="cn">Agregar Empresa</h4>
+				<form action="." method="POST" enctype = "multipart/form-data">
+					{% csrf_token %}
+					<p>En este campo debe digitar los nombres de la empresa y el logo de la misma.</p>
+					{{ form.as_p }}
+					<button type="submit"> <a class="waves-effect waves-light btn"><b>Guardar</b></a></button>
+					<b><input class="waves-effect waves-light btn"  type="reset" value="Limpiar"></b>
+					<a class="waves-effect waves-light btn" href="/" type="submit"><b>Volver</b></a>
+					
+
+				</form>
+				<br>
+			</article>
+				{{ info }}
+			</section>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}

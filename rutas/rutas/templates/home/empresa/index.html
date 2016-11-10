@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{%block title %}
+	Inicio-Bienvenidos
+{% endblock %}	
+
+{% block content %}
+<img id="imgbanner" src="/media/imagen/Banner.jpg" >
+  <head>
+    <title>Buscar Ruta:{% if query %} Results{% endif %}</title>
+  </head>
+  <div class="row content-header">
+      <div class="container">
+        <div id="c" class="card-panel hoverable card medium gray lighten-2 col s12 m12 l12">
+        
+          <form action="." method="GET">
+            <b><label for="q">Origen: </label></b>
+            <input type="text" name="q" value="{{ query|escape }}" title="lugares">
+            <br>
+            <br>
+            <b><label for="x">Destino: </label></b>
+            <input type="text" name="x" value="{{ query2|escape }}" title="lugares2">
+            <br>
+            <br>
+            <button style="btn" class="btn btn-primary boton" type="submit"><i class="material-icons left">pageview</i><b>Buscar</b></button>
+          </form>
+         
+          {% if query and query2 %}
+            <h5 class="offset-s3">La busqueda de:"{{ query|escape }}" y "{{ query2|escape }}" es: </h5>
+         
+            {% if results %}
+              <ul>
+              {% for p in results %}
+                <li>Ruta {{ p.numero }} {{ p.Empresa.nombre }}</li>
+                <td><a class="btn boton" href="/ruta/{{p.id}}"><li class="icon-search"></li><b>Ver</b></a></td>
+              {% endfor %}
+              </ul>
+            {% else %}
+              <p>No se encuentra la ruta solicitada</p>00
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+</div>
+{% endblock %}

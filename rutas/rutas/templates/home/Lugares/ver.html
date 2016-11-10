@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+			Detalles de Lugares
+{% endblock %}
+
+{% block content %}
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<div class="row">
+					<div class="col s5">
+						<h3> {{ lugar.nombre }} </h3>	
+						<br>
+						<div class="info">
+							<p><b>Nombre:</b> {{ lugar.nombre }} </p>
+							<p><b>Tipo lugar:</b> {{ lugar.tipo }}</p>	
+							<p><b>Latitud:</b> {{ lugar.latitud }}</p>
+							<p><b>Longitud:</b> {{ lugar.longitud }}</p>
+						</div>
+					</div>
+					<div class="col s12 l7">
+						{% if lugar.imagen %}
+							<img class="responsive-img" id="imagen" src="/media/{{ lugar.imagen }}" width ="400px" heigth="600px">
+						{% endif %}
+					</div>		
+			</div>
+					<div class="volver">
+						<a  class="btn btn-success boton" href="/lugares/page/1"><b>Volver</b></a>
+					</div>	
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}
+
+

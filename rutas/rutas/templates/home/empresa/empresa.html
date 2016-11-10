@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}
+			Lista de Empresas
+{% endblock %}
+{% block content %}
+<div class="row content-header">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<h4 id="cn"> Lista de Empresas </h4>	
+			<div class="divider"></div>
+			{% if empresa %}
+			<table>
+				<table class="col s12 bordered responsive-table">
+				<theader>
+					<tr>
+						<th data-field="id">Nombre</th>
+						<th data-field="n">Nit</th>
+						<th data-field="remp">Representante de la Empresa</th>
+					</tr>
+				</theader>	
+			{% for p in empresa %}
+					<tbody>
+						<tr>
+							<td>{{ p.nombre }}</td>					
+							<td>{{ p.nit }}</td>
+							<td>{{ p.Representante_de_la_empresa }}</td>
+							<td>
+								<a class= "waves-effect waves-light btn" href="/empresa/{{p.id}}"><i class = "material-icons left"> pageview </i><b>Ver</b></a>		
+								<a class = "waves-effect waves-light btn" href="/edit/empresa/{{ p.id }}"><i class = "material-icons left">mode_edit</i><b>Editar</b></a>
+								<a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons left">delete</i>Eliminar</a><br>
+								<!-- Modal Structure -->
+								<div id="modal1" class="modal">
+									<div class="modal-content">
+								    	<h4>Eliminar lugar</h4>
+								    	<p>¿Está seguro de eliminar la Empresa?</p>
+									</div>
+									<div class="modal-footer">
+								    	<a id="simodal" href="/eliminar/empresa{{ p.id }}" class=" modal-action modal-close waves-effect waves-green btn-flat">SI</a>
+								    	<a id="nomodal" href="{% url 'vista_empresa' %}" class="modal-action modal-close waves-effect waves-red btn-flat ">NO</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>	
+			{% endfor %}
+			</table>	
+					<br><br><br><br>	
+			{% else %}	
+				<h2> No existen empresas activas :(</h2>
+			{% endif %}
+			{% if empresas %}
+			<div class = "pagination">
+				<div class = "pagination pagination-centered">
+					<ul>
+						<li><a class="btn btn-info" href="/empresa/page/1"> << </a></li>
+						{% if empresa.has_previous %}
+						<li><a class="btn btn-info"href="/empresa/page/{{ empresa.previous_page_number}}"> Anterior </a></li>
+						{% else %}
+							<li><a class="btn btn-info" href="#"> Anterior </a></li>
+						{% endif %}
+						{% if empresa.has_next %}
+						<li><a  class="btn btn-info" href="/empresa/page/{{ empresa.next_page_number }}"> Siguiente </a></li>
+						{% else %}
+							<li><a class="btn btn-info" href="#"> Siguiente </a></li>
+						{% endif %}
+							<li><a class="btn btn-info"href="/empresa/page/{{ empresa.paginator.num_pages "> >> </a></li>
+					</ul>
+				</div>
+			</div>				
+				<h5>Pagina {{ empresas.number }} de {{ empresas.paginator.num_pages }} </h5><br>
+						
+			{% endif %}
+			<a class="waves-effect waves-light btn" href="/" type="submit"><b>Volver</b></a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

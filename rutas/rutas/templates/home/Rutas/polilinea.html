@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	
+	
+	Simple Polylines
+{% endblock %}
+
+{% block head %}
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	
+	<style>
+	  html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	  }
+	  #map {
+		height: 50%;
+		width: 50%;
+	  }
+	</style>
+
+{% endblock %}
+
+{% block content %}
+	<div id="map"></div>
+	
+{% endblock %}
+
+{% block script %}
+	<script>
+	function initMap() {
+	  var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 16,
+		center: {lat: 2.460313, lng: -76.597207},
+		mapTypeId: google.maps.MapTypeId.TERRAIN
+	  });
+
+
+	  var flightPlanCoordinates = [
+		
+	
+	  ];
+
+	  var flightPath = new google.maps.Polyline({
+		path: flightPlanCoordinates,
+		geodesic: true,
+		strokeColor: '#FF0000',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	  });
+
+	  flightPath.setMap(map);
+	}
+
+	</script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvAPq3o5fKsuf-xVXa1GerYQQhETh_q34&signed_in=true&callback=initMap"></script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{%block title %}
+    Lista de rutas
+{% endblock %} 
+
+{% block content %}
+<div class="row content-header">
+    <div id="contenedor" class="col s12 m12 l12">
+        <div id="car" class="card">
+			<h4 id="cn" class="col s12">Lista de Rutas</h4>
+			<div class="divider"></div>
+			<br>
+			{% if user.is_authenticated %}
+			<button><a  class="waves-effect waves-light btn" href="{% url 'vista_agregar_rutas' %}"><b>Agregar un nueva ruta</b></a></button>
+			<br><br>
+			{% endif %}
+			
+			{% if rutas %}			
+			<table  width=500 id="au" class= "bordered responsive-table">		
+				<thead>
+					<tr>
+						<th data-field="nr" id="t">Numero ruta</th>
+						<th data-field="tb" id="t">Tipo Bus</th>
+						<th data-field="e" id="t">Empresa</th>
+					</tr>
+				</thead>
+				{% for p in rutas %}		
+					<tbody>
+						<tr>
+							<td>{{ p.numero }}</td>
+						    <td>{{ p.tipo }}</td>
+						    <td>{{ p.empresas }}</td>
+						    <td>
+						    	<a id="dg" class="waves-effect waves-light btn" href="/ruta/{{p.id}}"><i class="material-icons left">pageview</i><b>Ver</b></a>
+								<a id="dg" class ="waves-effect waves-light btn" href="{% url 'vista_editar_ruta' id_rut=p.id %}"><i class="material-icons left">mode_edit</i><b>Editar</b></a>
+								<a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons left">delete</i><b>Eliminar</b></a>
+								<!-- Modal Structure -->
+								<div id="modal1" class="modal">
+									<div class="modal-content">
+								    	<h4>Eliminar lugar</h4>
+								    	<p>¿Está seguro de eliminar la ruta?</p>
+									</div>
+									<div class="modal-footer">
+								    	<a id="simodal" href="" class=" modal-action modal-close waves-effect waves-green btn-flat">SI</a>
+								    	<a id="nomodal" href="" class="modal-action modal-close waves-effect waves-red btn-flat ">NO</a>
+									</div>
+								</div>						        
+							</td>
+						</tr>						
+					</tbody>		
+				{% endfor %}
+			</table>	<br>
+
+			{% else %}
+				<h2>No existen rutas activas :( </h2>
+			{% endif %}
+			{% if rutas %}
+		 	<div class="pagination">
+		 		<div class="pagination pagination-centered">
+					<ul>
+		 				<li><a  href="/ruta/page/1"> << </a></li>
+						{% if productos.has_previous %}
+		 					<li><a href="/ruta/page/{{rutas.previous_page_number}}"> Anterior </a></li>
+						{% else %}
+							<li><a href="#"> Anterior </a></li>
+		 				{% endif %}
+
+						{% if rutas.has_next %}
+							<li><a href="/ruta/page/{{rutas.next_page_number}}"> Siguiente </a></li>
+						{% else %}
+							<li ><a href="#"> Siguiente </a></li>
+						{% endif %}
+							<li><a href="/ruta/page/{{rutas.paginator.num_pages}}"> >> </a></li>
+					</ul>
+				</div>
+			</div>
+						<br>
+						<h5>Pagina{{ rutas.number }} de {{ rutas.paginator.num_pages }}</h5>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

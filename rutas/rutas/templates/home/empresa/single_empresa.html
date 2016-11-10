@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+		
+			{% if empresa.logo %}
+				  
+				<img src="/media/{{ empresa.logo }}" width ="600px" heigth="150px"><br>
+			{% endif %}
+			<br>
+			<p><b>Nombre:</b> {{ empresa.nombre }} </p><br>
+			<p><b>Nit:</b> {{ empresa.nit }} </p><br>
+			<p><b>Representante de la empresa: </b> {{ empresa.Representante_de_la_empresa }} </p>	<br>
+			<a class="btn btn-success boton" href="/empresa/"><b>Volver</b></a>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %}
+

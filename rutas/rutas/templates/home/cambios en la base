@@ -1,0 +1,146 @@
+cambios en la base.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} Bienvenidos{% endblock %}</title>
+	<!--materialize-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/media/css/materialize.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/media/css/styles.css">
+</head>
+<body>
+	<!--navegador-->
+	{% block menu %}				
+
+	{% endblock %}
+	<header>
+	<nav>
+    <div class="nav-wrapper blue-grey darken-3">
+      <a href="#" class="brand-logo right" id="ty">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a id="ty" href="{% url 'vista_buscar' %}">Buscador</a></li>
+    
+        <li><a id="ty"href="">Comentar</a></li>  
+        {% if user.is_authenticated %}
+        	<!-- +++++++++++++++++++++++++++++++++++++EMPRESAS++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+			<li><a  id="ty"class="dropdown-button" href="#!" data-activates="dropdown3">Empresas<i class="material-icons right">arrow_drop_down</i></a></li>
+			<ul id="dropdown3" class="dropdown-content  blue-grey darken-2">
+			    <li><a id="ty" href="{% url 'vista_add_empresa' %}">Agregar Empresa</a></li>
+				<li><a id="ty" href="{% url 'vista_empresa' %}">Listado de Empresas</a></li>	
+			</ul>	
+			<!-- +++++++++++++++++++++++++++++++++++++LUGARES+++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+			<li><a id="ty" class="dropdown-button" href="#!" data-activates="dropdown1">Lugares<i class="material-icons right">arrow_drop_down</i></a></li>
+			    <ul id="dropdown1" class="dropdown-content  blue-grey darken-2">
+			        <li><a id="ty" href="{% url 'vista_agregar_lugar' %}">Lugar</a></li>
+					<li><a id="ty" href="{% url 'vista_agregar_tipo_lugar' %}">Tipo de Lugar</a></li>
+					<li><a id="ty" href="/lugares/page/1">Listado de lugares</a></li>			
+				</ul>	
+			<!-- ++++++++++++++++++++++++++++++++++++++++RUTAS++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+			<li><a id="ty" class="dropdown-button" href="#!" data-activates="dropdown2">Rutas<i class="material-icons right">arrow_drop_down</i></a></li>
+			    <ul id="dropdown2" class="dropdown-content  blue-grey darken-2">
+			    <!--<li><a href="">Agregar Recorrido</a></li>-->
+			        <li><a id="ty" href="{% url 'vista_agregar_rutas' %}">Agregar Ruta</a></li>
+					<li><a id="ty" href="/ruta/page/1">Listado de Rutas</a></li>							
+				</ul>
+		{% endif %}						
+      </ul>
+    </div>
+  </nav>
+  </header>
+  	
+  <!--contenedor(0)-->
+	<div class="row ">
+      	<div class="col s3  yellow lighten-2 z-depth-1">
+      	<!--Contenedor(1)-->
+			      	<div class=" col s12">
+				      		<div class="card   blue-grey darken-2">
+				      			<div class=" card-content white-text">
+				      				<span class="card-title" id="ty">BUSCADOR</span>
+				      				<div class="divider"></div>
+								    <div class="row">
+								        <div class="input-field col s12">          
+								          	<input id="icon_prefix" type="text" class="validate" value="{{ query|escape }}" title="lugares">
+								          	<label for="icon_prefix">Origen</label>
+								        </div>
+								        <div class="input-field col s12">          
+								            <input id="icon_prefix" type="text" class="validate" value="{{ query2|escape }}" title="lugares2">
+								          	<label for="icon_prefix">Destino</label>
+								        </div>
+								        
+								        
+							      	</div>
+				      			</div>      	
+				      		</div>
+			      	</div>
+		<!--Contenedor(2)-->
+		      	<div class=" col s12">
+		      		<div class="card   blue-grey darken-2">
+			            <div class="card-content white-text">
+			              	<span class="card-title" id="ty">MENÚ</span>
+			              	<div class="divider"></div>
+							
+							<!--+++++++++++++++++++++++++++++++++++++COMENTARIO++++++++++++++++++++++++++++++++++++++++++++++-->
+							<li><a href="{% url 'vista_contacto' %}">Comentario</a></li>		
+							<!--++++++++++++++++++++++++++++++++++++LOGIN+++++++++++++++++++++++++++++++++++++++++++++++++++-->
+							{% if user.is_authenticated and user.is_staff %}				
+								<a href= "{% url 'vista_logout' %}">Cerrar Sesion</a>
+								<a href= "{% url 'vista_user' %}">Ver Perfil</a>
+
+							{% else %}				
+								<a href= "{% url 'vista_login' %}">Iniciar Sesión</a>				
+							{% endif %}			
+			            </div>
+		        	</div>
+		      </div>
+      	</div>
+
+      	<div class="col s9  yellow lighten-2 z-depth-1">
+      		{% block content %}
+			{% endblock %} 
+
+         	<div class="card">
+            	<div class="card-content">
+	              <p class="z-depth-2">I am a very simple card. I am good at containing small bits of information.
+	              I am convenient because I require little markup to use effectively.</p>
+	            </div>
+            </div>
+      	</div>
+	</div>
+  					
+
+    <script type="text/javascript" src="/media/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/media/js/materialize.min.js"></script>
+
+    <script>
+	    $(document).ready(function() {
+	    	$('select').material_select();
+		});
+
+		$(".dropdown-button").dropdown();
+    </script>
+</body>
+</html>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++admin.py 
+
+from django.contrib import admin
+from rutas.apps.home.models import user_profile
+
+admin.site.register(user_profile)
+
+
+AUTH_PROFILE_MODULE = 'home.user_profile'
+
+from django.contrib.auth.models import User
+
+class user_profile(models.Model):
+	def url(self,filename):
+		ruta = "MultimediaData/Users/%s/%s"%(self.user.username,filename)
+		return ruta
+
+	user 		= models.OneToOneField(User)	
+	photo 		= models.ImageField(upload_to=url)
+	telefono 	= models.CharField(max_length=30)
+
+	def __unicode__(self):
+		return self.user.username

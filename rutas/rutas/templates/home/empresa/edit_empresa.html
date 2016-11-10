@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+	Editar una empresa
+{% endblock %}
+
+{% block content %}
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			<form action="." method="POST" enctype = "multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit"> <a class="waves-effect waves-light btn"><b>Guardar</b></a></button>
+				<a class="waves-effect waves-light btn" href="/empresa/" type="submit" ><b>Cancelar</b></a>
+			</form>
+			<br>
+			{{ info }}
+		</div>
+	  </div>
+	</div>
+</div>
+{% endblock %}	

@@ -1,0 +1,112 @@
+
+{% block title %}
+	 Rutas
+{% endblock %}
+
+{% block head %}
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	
+	<style>
+	  html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	  }
+	  #map {
+		height: 50%;
+		width: 50%;
+	  }
+	</style>
+
+{% endblock %}
+
+{% block content %}
+	<div class="row content-header">
+		<div class="container">
+		<div id="card" class="card medium col s12 m12 l12">
+		<div class="col s5">
+			<h1>{{ ruta.nombre }}</h1>
+			
+			<div class="info">
+				<p><b>Numero de la ruta:</b> {{ rutas.numero }}</p>
+				<p><b>Recorrido:</b> {{ rutas.recorrido }}</p>
+				<p><b>Tipo de bus:</b>  {{ rutas.tipo }}</p> 				
+			</div>
+			<div>
+				{% for l in rutas.Empresas.all %}
+				<p>Empresas:</p>
+				<span class="label label-info">{{ l.nombre }}</span>
+				{% endfor %}
+			</div>
+
+		</div>
+		<div class="col s4"><br>
+			{% if rutas.imagen %}
+				<img src="/media/{{ ruta.fotoRuta }}" width ="380px" heigth="300px">
+			{% endif %}	
+			<div>
+					<p><b>Lugares:</b></p>
+					{% for a in rutas.lugares.all %}
+						
+						<span class="label label-info">{{ a.nombre }}<br></span>
+					{% endfor %}
+
+					<p>POOOOO</p>
+
+					{% for a in lugares %}
+						
+						<span class="label label-info">{{ a.nombre }}{{ latitud }}{{ longitud }}<br></span>
+						<br>
+					{% endfor %}
+			</div>
+		</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<div id="map"></div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<a style="btn" class="btn btn-primary boton" href="/"><b>Volver</b></a>
+	</div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+
+	//var longitud 
+	//longitud = {{longitud.0}};
+	
+	document.write({{longitud.0}});
+	function initMap() {
+	  var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 16,
+		center: {lat: 2.460313, lng: -76.597207},
+		mapTypeId: google.maps.MapTypeId.TERRAIN
+	  });
+
+
+	  var flightPlanCoordinates = [
+		
+		//for (var i = 0; i < 3; i++){
+		//	{lat: 2.464353, lng: -76.598257},
+		//}
+		{lat: 2.460313, lng: ({{longitud.0}}) },
+		{lat: 2.460323, lng: -76.598207},
+		{lat: 2.464353, lng: -76.598257},
+	  ];
+
+	  var flightPath = new google.maps.Polyline({
+		path: flightPlanCoordinates,
+		geodesic: true,
+		strokeColor: '#FF0000',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	  });
+
+	  flightPath.setMap(map);
+	}
+
+	</script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvAPq3o5fKsuf-xVXa1GerYQQhETh_q34&signed_in=true&callback=initMap"></script>
+{% endblock %}
