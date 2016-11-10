@@ -73,14 +73,74 @@
 {% block script %}
 	<script>
 
-	//var longitud 
-	//longitud = {{longitud.0}};
 	
-	document.write({{longitud.0}});
+	var cont = {{cont}};
+	var cont2 = 0;
+
+
+	var longitud1 = parseFloat({{longitud.0}});
+	var longitud2 = parseFloat({{longitud.1}});
+	var longitud3 = parseFloat({{longitud.2}});
+	var longitud4 = parseFloat({{longitud.3}});
+	var longitud5 = parseFloat({{longitud.4}});
+	var longitud6 = parseFloat({{longitud.5}});
+	var longitud7 = parseFloat({{longitud.6}});
+	var longitud8 = parseFloat({{longitud.7}});
+	var longitud9 = parseFloat({{longitud.8}});
+
+	var latitud1 = parseFloat({{latitud.0}});
+	var latitud2 = parseFloat({{latitud.1}});
+	var latitud3 = parseFloat({{latitud.2}});
+	var latitud4 = parseFloat({{latitud.3}});
+	var latitud5 = parseFloat({{latitud.4}});
+	var latitud6 = parseFloat({{latitud.5}});
+	var latitud7 = parseFloat({{latitud.6}});
+	var latitud8 = parseFloat({{latitud.7}});
+	var latitud9 = parseFloat({{latitud.8}});
+	//var longitud = new Array();
+	//longitud = {{longitud.0}};
+	//for (var i = 0; i < cont; i++){
+	//	longitud[i]= {{longitud.}};
+	//}
+
+	/*do{
+
+		if (cont2 == 0) {
+			longitud[cont2]= {{longitud.0}};
+		}
+
+		if (cont2 == 1) {
+			longitud[cont2]= {{longitud.1}};
+		}
+		if (cont2 == 2) {
+			longitud[cont2]= {{longitud.2}};
+		}
+		if (cont2 == 3) {
+			longitud[cont2]= {{longitud.3}};
+		}
+		if (cont2 == 4) {
+			longitud[cont2]= {{longitud.4}};
+		}
+		if (cont2 == 5) {
+			longitud[cont2]= {{longitud.5}};
+		}
+		if (cont2 == 6) {
+			longitud[cont2]= {{longitud.6}};
+		
+		
+
+		cont2 = cont2+1;
+	} while (cont2 < cont);
+	*/
+	
+	
+	//document.write({{longitud.0}});
+	document.write(longitud1,"  ",cont,"    ",cont2);
+	
 	function initMap() {
 	  var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 16,
-		center: {lat: 2.460313, lng: -76.597207},
+		center: {lat: 2.4831121, lng: -76.561826},
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	  });
 
@@ -90,9 +150,21 @@
 		//for (var i = 0; i < 3; i++){
 		//	{lat: 2.464353, lng: -76.598257},
 		//}
-		{lat: 2.460313, lng: ({{longitud.0}}) },
-		{lat: 2.460323, lng: -76.598207},
-		{lat: 2.464353, lng: -76.598257},
+		//{lat: 2.460313, lng: ({{longitud.0}}) },
+		
+		{lat: latitud1, lng: longitud1},
+		{lat: latitud2, lng: longitud2},
+		{lat: latitud3, lng: longitud3},
+		{lat: latitud4, lng: longitud4},
+		{lat: latitud5, lng: longitud5},
+		{lat: latitud6, lng: longitud6},
+		{lat: latitud7, lng: longitud7},
+		{lat: latitud8, lng: longitud8},
+		
+		//{lat: latitud1, lng: longitud1},
+		//{lat: 2.464353, lng: -76.598257},
+		//{lat: 2.464353, lng: -76.598257},
+		//{lat: 2.464353, lng: -76.598257},
 	  ];
 
 	  var flightPath = new google.maps.Polyline({

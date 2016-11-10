@@ -37,8 +37,8 @@ class TipoLugar(models.Model):
 class Lugar(models.Model):	
 	
 	nombre		= models.CharField(max_length = 250, unique=True)
-	latitud		= models.IntegerField( unique=True)
-	longitud	= models.IntegerField( unique=True)
+	latitud		= models.CharField(max_length = 45, unique=True)
+	longitud	= models.CharField(max_length = 45, unique=True)
 	tipo 		= models.ForeignKey(TipoLugar)
 	imagen		= models.ImageField(upload_to='empresa', default='empresa/empresa.png', blank=True)
 	#imagen		= models.ImageField(upload_to = url, null = True, blank = True)

@@ -316,18 +316,20 @@ def single_ruta_view(request, id_rut):
 	rut = Ruta.objects.get(id = id_rut)
 	lugares = rut.lugares.all()
 	longitud = []
-	latitud = 2.460313	
+	latitud = []
 	cont = 0
 	for a in lugares:	
 		
-		longitud.append(-76.597201)
+		longitud.append("-76.561826")
+		latitud.append("2.4831121")
 		cont = cont + 1
 
 
 	   
 	print(longitud) 
 	print(latitud)  
-	ctx = {'rutas':rut,'latitud':latitud,'longitud':longitud,'lugares':lugares,}
+	print(cont)
+	ctx = {'rutas':rut,'latitud':latitud,'longitud':longitud,'lugares':lugares,'cont':cont}
 	return render_to_response('home/Rutas/single_ruta.html', ctx, context_instance = RequestContext(request))   
 ##################################################################################
 def ruta_view (request, pagina):
